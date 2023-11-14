@@ -12,9 +12,18 @@ const SignUpPage = () => {
 
   const onHandleSubmit = (event) => {
     event.preventDefault();
-    dispatch(register({ email, password })).then(() =>
-      toast.success("Success!")
-    );
+    dispatch(register({ email, password }))
+      .then((res) => {
+        if (
+          res.payload.response?.status === 400 ||
+          res.payload.response?.status === 409
+        ) {
+          toast.error(res.payload.response.data.message);
+          throw new Error();
+        }
+        toast.success("Success!");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -38,7 +47,7 @@ const SignUpPage = () => {
         </label>
         <button type="submit">Register</button>
       </form>
-      <NavLink to="/signin">Login</NavLink>
+      <NavLink to="/">Login</NavLink>
     </div>
   );
 };
