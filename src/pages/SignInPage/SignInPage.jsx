@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { login } from "../../redux/auth/authOperations";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import css from "./SignInPage.module.css";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -27,28 +28,53 @@ const SignInPage = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onHandleSubmit}>
-        <label>
-          Email
-          <input
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-        </label>
-        <button type="submit">Login</button>
-      </form>
-      <NavLink to="/signup">Register</NavLink>
-    </div>
+    <section className={css.container}>
+      <div>
+        <div>
+          <NavLink to="/signup" className={css.redirect__link}>
+            Реєстрація
+          </NavLink>
+          <NavLink to="/" className={css.redirect__link}>
+            Вхід
+          </NavLink>
+        </div>
+        <form onSubmit={onHandleSubmit} className={css.form}>
+          <label className={css.label}>
+            введіть ваш email:
+            <input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              className={css.input}
+              placeholder="youremail@mail.com"
+            />
+          </label>
+          <label className={css.label}>
+            введіть ваш пароль:
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              className={css.input}
+              placeholder="ваш пароль"
+            />
+          </label>
+          <button type="submit" className={css.authbutton}>
+            АВТОРИЗУВАТИСЯ
+          </button>
+        </form>
+
+        <p className={css.redirect__text}>
+          Немає акаунту?
+          <span>
+            {" "}
+            <NavLink to="/signup" className={css.redirect__link}>
+              Зареєструватися
+            </NavLink>
+          </span>
+        </p>
+      </div>
+    </section>
   );
 };
 

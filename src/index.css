@@ -1,42 +1,68 @@
+@import "/node_modules/modern-normalize/modern-normalize.css";
+
 html {
   background-color: #1d1d1d;
 }
 
-li {
+ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.button__categoty {
-  background-color: #242424;
-  border: 1px solid #454545;
-  border-radius: 10px;
-  color: #eaeaea;
-  cursor: pointer;
-  display: flex;
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+blockquote,
+dd,
+dl,
+figcaption,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+li,
+ol,
+p,
+ul {
   font-size: 14px;
-  font-weight: 800;
-  height: 46px;
-  justify-content: center;
-  line-height: 143%;
-  padding: 0 25px;
-  text-transform: uppercase;
-  align-items: center;
-  backdrop-filter: blur(10px);
+  margin: 0;
 }
 
-.game__name {
-  color: #eaeaea;
-  font-size: 22px;
-  font-weight: 800;
-  line-height: 36px;
-  margin-bottom: 6px;
-  text-transform: uppercase;
+input {
+  font: inherit;
 }
 
-.game__descr {
-  color: #afafaf;
-  font-size: 12px;
-  font-weight: 300;
-  height: 80px;
-  line-height: 18px;
+button {
+  font: inherit;
 }

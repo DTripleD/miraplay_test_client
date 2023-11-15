@@ -3,7 +3,7 @@ import { getGames } from "./gamesOperations";
 
 const initialState = {
   games: [],
-  gamesListLength: 11,
+  gamesListLength: null,
   isLoading: false,
   error: null,
 };

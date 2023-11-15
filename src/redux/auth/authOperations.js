@@ -44,35 +44,18 @@ export const login = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+
+  console.log(state.auth.token);
+
+  setAuthHeader(state.auth.token);
+
   try {
     await axios.post(
-      "https://miraplay-test-server-xzvo.onrender.com//users/logout"
+      "https://miraplay-test-server-xzvo.onrender.com/users/logout"
     );
     clearAuthHeader();
-    localStorage.setItem("accessToken", "");
-
-    localStorage.setItem("refreshToken", "");
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-export const refreshUser = createAsyncThunk(
-  "auth/refresh",
-  async (_, thunkAPI) => {
-    const persistedToken = localStorage.getItem("accessToken");
-
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
-    }
-    try {
-      setAuthHeader(persistedToken);
-      const res = await axios.get(
-        "https://miraplay-test-server-xzvo.onrender.com//users/current"
-      );
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
