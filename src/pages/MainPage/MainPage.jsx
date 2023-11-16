@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getGames } from "../../redux/games/gamesOperations.js";
+import svg from "../../images/icons/icons.svg";
 import {
   selectAllGames,
   selectGamesLength,
@@ -25,6 +26,7 @@ const MainPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(true);
+  const [isOpenSelect, setIsOpenSelect] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -67,7 +69,22 @@ const MainPage = () => {
             <div className={css.filter_sort}>
               <div className={css.filter__select}>
                 <h4 className={css.filter__sorttitle}>Сортувати:</h4>
-                <select name="" id=""></select>
+                <div
+                  className={css.select__wrapper}
+                  onClick={() => setIsOpenSelect((prev) => !prev)}
+                >
+                  <svg
+                    className={`${css.svg} ${isOpenSelect && css.svg__open}`}
+                  >
+                    <use href={svg + "#icon-play"} />
+                  </svg>
+                  <p className={css.selected__text}>спочатку нові</p>
+                  {isOpenSelect && (
+                    <ul className={css.select__list}>
+                      <li className={css.select__item}>спочатку старі</li>
+                    </ul>
+                  )}
+                </div>
               </div>
             </div>
 

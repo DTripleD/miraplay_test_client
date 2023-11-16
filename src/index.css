@@ -66,3 +66,7 @@ input {
 button {
   font: inherit;
 }
+
+a {
+  text-decoration: none;
+}

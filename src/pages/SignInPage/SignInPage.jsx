@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { login } from "../../redux/auth/authOperations";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -17,7 +16,8 @@ const SignInPage = () => {
       .then((res) => {
         if (
           res.payload.response?.status === 400 ||
-          res.payload.response?.status === 409
+          res.payload.response?.status === 409 ||
+          res.payload.response?.status === 401
         ) {
           toast.error(res.payload.response.data.message);
           throw new Error();
@@ -30,14 +30,6 @@ const SignInPage = () => {
   return (
     <section className={css.container}>
       <div>
-        <div>
-          <NavLink to="/signup" className={css.redirect__link}>
-            Реєстрація
-          </NavLink>
-          <NavLink to="/" className={css.redirect__link}>
-            Вхід
-          </NavLink>
-        </div>
         <form onSubmit={onHandleSubmit} className={css.form}>
           <label className={css.label}>
             введіть ваш email:
@@ -63,16 +55,6 @@ const SignInPage = () => {
             АВТОРИЗУВАТИСЯ
           </button>
         </form>
-
-        <p className={css.redirect__text}>
-          Немає акаунту?
-          <span>
-            {" "}
-            <NavLink to="/signup" className={css.redirect__link}>
-              Зареєструватися
-            </NavLink>
-          </span>
-        </p>
       </div>
     </section>
   );

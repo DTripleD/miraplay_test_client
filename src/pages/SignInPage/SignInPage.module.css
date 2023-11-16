@@ -68,22 +68,3 @@
   transition: all 0.2s ease-in-out;
 }
 
-.redirect__text {
-  color: #afafaf;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 20px;
-  margin-bottom: 40px;
-}
-
-.redirect__link {
-  background-color: initial;
-  border: none;
-  color: #eaeaea;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 133%;
-  padding-top: 10px;
-  text-transform: uppercase;
-}
