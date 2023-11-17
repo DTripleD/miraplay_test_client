@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Loader from "./components/Loader/Loader.jsx";
 import { selectIsLoading } from "./redux/auth/authSelectors.js";
+import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
 
 const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
@@ -57,6 +58,7 @@ function App() {
               path="/main"
               element={<PrivateRoute component={<MainPage />} />}
             />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
 
