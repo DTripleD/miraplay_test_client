@@ -10,5 +10,5 @@ export default defineConfig({
       components: "/src/components",
     },
   },
-  base: "/miraplay-test-client/",
+  base: "/miraplay_test_client/",
 });
