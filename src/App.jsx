@@ -27,6 +27,8 @@ function App() {
     dispatch(current());
   }, [dispatch]);
 
+  console.log(":bug fix");
+
   const queryClient = new QueryClient();
 
   return isLoading ? (
