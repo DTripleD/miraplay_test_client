@@ -16,14 +16,12 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage.jsx";
 
 const SignInPage = lazy(() => import("./pages/SignInPage/SignInPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage/SignUpPage"));
-const MainPage = lazy(() => import("./pages/MainPage/MainPage.jsx"));
+const MainPage = lazy(() => import("./pages/MainPage/MainPage"));
 
 function App() {
   const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
-
-  console.log("gfdg");
 
   useEffect(() => {
     dispatch(current());
