@@ -32,6 +32,9 @@
   margin-top: 14px;
   padding: 25px;
   width: 370px;
+}
+
+.input::placeholder {
   text-transform: uppercase;
 }
 
@@ -67,4 +70,3 @@
   outline: none;
   transition: all 0.2s ease-in-out;
 }
-

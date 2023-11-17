@@ -10,9 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const onHandleLogout = () => {
-    dispatch(logout())
-      .then(() => console.log("logout"))
-      .catch((error) => console.log(error));
+    dispatch(logout());
   };
 
   const isLoggedIn = useSelector(selectIsLoggedIn);

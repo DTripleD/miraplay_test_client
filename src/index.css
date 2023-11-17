@@ -1,7 +1,17 @@
 @import "/node_modules/modern-normalize/modern-normalize.css";
 
+@font-face {
+  font-family: "Neue Machina";
+  src: url("./fonts//NeueMachina-Black.woff2") format("woff2"),
+    url("./fonts//NeueMachina-Black.woff") format("woff");
+}
+
 html {
   background-color: #1d1d1d;
+}
+
+body {
+  font-family: "Neue Machina";
 }
 
 ul {
