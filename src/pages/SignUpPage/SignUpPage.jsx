@@ -3,16 +3,30 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/authOperations";
 import toast from "react-hot-toast";
 import css from "../SignInPage/SignInPage.module.css";
+import Joi from "joi-browser";
+import { schema } from "../../shared/schema";
 
 const SignUpPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
   const dispatch = useDispatch();
 
   const onHandleSubmit = (event) => {
     event.preventDefault();
-    dispatch(register({ email, password }))
+
+    if (errors.email) {
+      return toast.error(errors.email);
+    }
+
+    if (errors.password) {
+      return toast.error(errors.password);
+    }
+
+    dispatch(register(user))
       .then((res) => {
         if (
           res.payload.response?.status === 400 ||
@@ -24,7 +38,39 @@ const SignUpPage = () => {
         }
         toast.success("Success!");
       })
+      .then(() =>
+        setUser({
+          email: "",
+          password: "",
+        })
+      )
       .catch((error) => console.log(error));
+  };
+
+  const handleSave = (event) => {
+    const { name, value } = event.target;
+    let errorData = { ...errors };
+    const errorMessage = validateProperty(event);
+    if (errorMessage) {
+      errorData[name] = errorMessage;
+    } else {
+      delete errorData[name];
+    }
+    let customerData = { ...user };
+    customerData[name] = value;
+    setUser(customerData);
+    setErrors(errorData);
+  };
+
+  const validateProperty = (event) => {
+    const { name, value } = event.target;
+    const obj = { [name]: value };
+
+    const subSchema = { [name]: schema[name] };
+
+    const result = Joi.validate(obj, subSchema);
+    const { error } = result;
+    return error ? error.details[0].message : null;
   };
 
   return (
@@ -35,8 +81,9 @@ const SignUpPage = () => {
             введіть ваш email:
             <input
               type="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              name="email"
+              onChange={handleSave}
+              value={user.email}
               className={css.input}
               placeholder="youremail@mail.com"
             />
@@ -45,8 +92,9 @@ const SignUpPage = () => {
             введіть ваш пароль:
             <input
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
+              name="password"
+              onChange={handleSave}
+              value={user.password}
               className={css.input}
               placeholder="ваш пароль"
             />
