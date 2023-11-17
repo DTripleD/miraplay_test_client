@@ -23,6 +23,8 @@ function App() {
 
   const dispatch = useDispatch();
 
+  console.log("gfdg");
+
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);
