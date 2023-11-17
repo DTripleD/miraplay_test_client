@@ -23,6 +23,8 @@ function App() {
 
   const dispatch = useDispatch();
 
+  console.log("start");
+
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);
